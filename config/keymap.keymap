@@ -7,6 +7,10 @@
 #if defined(TORABO_TSUKI_LP_INPUT_HIRES_DIAL)
 #include <behaviors/hires_dial.dtsi>
 #endif
+/* トラックボールの動きをスクロールに切り替える設定 */
+&zip_scroll_transform {
+    input-processors = <&zip_xy_to_scroll_mapper>;
+};
 
 / {
     combos {
