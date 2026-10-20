@@ -23,6 +23,19 @@
         };
     };
 
+behaviors {
+        // ボタンを押している間だけスクロールモードになり、短く押すとSPACEを入力する設定
+        st: scroll_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "Scroll Tap";
+            #binding-cells = <2>;
+            bindings = <&mo>, <&kp>;
+            tapping-term-ms = <200>;
+            flavor = "balanced";
+            hold-while-undecided;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
