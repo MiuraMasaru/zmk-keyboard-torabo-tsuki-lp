@@ -7,6 +7,7 @@
 #if defined(TORABO_TSUKI_LP_INPUT_HIRES_DIAL)
 #include <behaviors/hires_dial.dtsi>
 #endif
+
 /* トラックボールの動きをスクロールに切り替える設定 */
 &zip_scroll_transform {
     input-processors = <&zip_xy_to_scroll_mapper>;
@@ -20,19 +21,6 @@
             bindings = <&bt BT_CLR>;
             key-positions = <28 29>;
             layers = <2>;
-        };
-    };
-
-behaviors {
-        // ボタンを押している間だけスクロールモードになり、短く押すとSPACEを入力する設定
-        st: scroll_tap {
-            compatible = "zmk,behavior-hold-tap";
-            label = "Scroll Tap";
-            #binding-cells = <2>;
-            bindings = <&mo>, <&kp>;
-            tapping-term-ms = <200>;
-            flavor = "balanced";
-            hold-while-undecided;
         };
     };
 
@@ -97,6 +85,9 @@ behaviors {
 &hires_dial_radial_controller_button
 #endif
             >;
+
+            /* レイヤー3が有効な間、トラックボールをスクロール操作に変換 */
+            input-processors = <&zip_scroll_transform>;
         };
     };
 };
@@ -115,7 +106,6 @@ behaviors {
 };
 
 &{/keymap/layer_3} {
-    /* Quarter-speed Radial Controller motion: output/input = 1/4. */
     sensor-bindings = <&hires_dial_radial_controller 4 1>;
 };
 #endif
