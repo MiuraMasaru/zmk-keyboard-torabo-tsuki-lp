@@ -20,6 +20,3 @@
 &size_l_transform {
     col-offset = <7>;
 };
-&trackball_listener {
-    scroll-layers = <3>;
-};
